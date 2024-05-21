@@ -1,8 +1,9 @@
-﻿namespace Infinite_Crisis_Extractor
+﻿using static Program;
+namespace Infinite_Crisis_Extractor
 {
     class PCK
     {
-        public static void Read(string[] args)
+        public static void Read(string file)
         {
             br.ReadInt32();
             br.ReadInt32();
@@ -24,12 +25,12 @@
             {
                 subfiles.Add(new());
             }
-            Directory.CreateDirectory(Path.GetDirectoryName(args[0]) + "//" + Path.GetFileNameWithoutExtension(args[0]));
+            Directory.CreateDirectory(Path.GetDirectoryName(file) + "//" + Path.GetFileNameWithoutExtension(file));
             int n = 0;
             foreach (Subfile subfile in subfiles)
             {
                 br.BaseStream.Position = subfile.offset;
-                using FileStream fs = File.Create(Path.GetDirectoryName(args[0]) + "//" + Path.GetFileNameWithoutExtension(args[0]) + "//" + n);
+                using FileStream fs = File.Create(Path.GetDirectoryName(file) + "//" + Path.GetFileNameWithoutExtension(file) + "//" + n);
                 BinaryWriter bw = new(fs);
                 bw.Write(br.ReadBytes(subfile.size));
                 bw.Close();

@@ -1,7 +1,7 @@
 ﻿//Written for Infinite Crisis. https://steamcommunity.com/app/345520/
-internal class Program
+class Program
 {
-    static BinaryReader br;
+    public static BinaryReader br;
     private static void Main(string[] args)
     {
         br = new(File.OpenRead(args[0]));
@@ -9,6 +9,6 @@ internal class Program
         if (new string(br.ReadChars(4)) != "AKPK")
             throw new System.Exception("Wrong file. Input a pck file from Infinite Crisis.");
 
-        Infinite_Crisis_Extractor.PCK.Read();
+        Infinite_Crisis_Extractor.PCK.Read(args[0]);
     }
 }
