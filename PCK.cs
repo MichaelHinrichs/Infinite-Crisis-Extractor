@@ -5,7 +5,9 @@ namespace Infinite_Crisis_Extractor
     {
         public static void Read(string file)
         {
-            br.ReadInt32();
+            if (new string(br.ReadChars(4)) != "AKPK")
+                throw new Exception("This is not a Infinite Crisis pck file.");
+            
             br.ReadInt32();
             br.ReadInt32();
             br.ReadInt32();
